@@ -64,7 +64,6 @@ namespace CustomGameManager
             this.Game1.Text = "Game 1";
             this.Game1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Game1.UseVisualStyleBackColor = true;
-            this.Game1.Click += new System.EventHandler(this.Game1_Click);
             // 
             // Game2
             // 
@@ -75,7 +74,6 @@ namespace CustomGameManager
             this.Game2.Text = "Game 2";
             this.Game2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Game2.UseVisualStyleBackColor = true;
-            this.Game2.Click += new System.EventHandler(this.Game2_Click);
             // 
             // Game3
             // 
@@ -86,7 +84,6 @@ namespace CustomGameManager
             this.Game3.Text = "Game 3";
             this.Game3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Game3.UseVisualStyleBackColor = true;
-            this.Game3.Click += new System.EventHandler(this.Game3_Click);
             // 
             // Game4
             // 
@@ -97,7 +94,6 @@ namespace CustomGameManager
             this.Game4.Text = "Game 4";
             this.Game4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Game4.UseVisualStyleBackColor = true;
-            this.Game4.Click += new System.EventHandler(this.Game4_Click);
             // 
             // Game5
             // 
@@ -108,7 +104,6 @@ namespace CustomGameManager
             this.Game5.Text = "Game 5";
             this.Game5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Game5.UseVisualStyleBackColor = true;
-            this.Game5.Click += new System.EventHandler(this.Game5_Click);
             // 
             // Game10
             // 
@@ -119,7 +114,6 @@ namespace CustomGameManager
             this.Game10.Text = "Game 10";
             this.Game10.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Game10.UseVisualStyleBackColor = true;
-            this.Game10.Click += new System.EventHandler(this.Game10_Click);
             // 
             // Game9
             // 
@@ -130,7 +124,6 @@ namespace CustomGameManager
             this.Game9.Text = "Game 9";
             this.Game9.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Game9.UseVisualStyleBackColor = true;
-            this.Game9.Click += new System.EventHandler(this.Game9_Click);
             // 
             // Game8
             // 
@@ -141,7 +134,6 @@ namespace CustomGameManager
             this.Game8.Text = "Game 8";
             this.Game8.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Game8.UseVisualStyleBackColor = true;
-            this.Game8.Click += new System.EventHandler(this.Game8_Click);
             // 
             // Game7
             // 
@@ -152,7 +144,6 @@ namespace CustomGameManager
             this.Game7.Text = "Game 7";
             this.Game7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Game7.UseVisualStyleBackColor = true;
-            this.Game7.Click += new System.EventHandler(this.Game7_Click);
             // 
             // Game6
             // 
@@ -163,7 +154,6 @@ namespace CustomGameManager
             this.Game6.Text = "Game 6";
             this.Game6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Game6.UseVisualStyleBackColor = true;
-            this.Game6.Click += new System.EventHandler(this.Game6_Click);
             // 
             // richTextBox1
             // 

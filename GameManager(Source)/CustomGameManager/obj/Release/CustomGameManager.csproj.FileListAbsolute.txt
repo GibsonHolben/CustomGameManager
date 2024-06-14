@@ -28,3 +28,13 @@ C:\Users\Gibson\Downloads\GameManager-main\GameManager-main\GameManager(Source)\
 C:\Users\Gibson\Downloads\GameManager-main\GameManager-main\GameManager(Source)\CustomGameManager\obj\Release\CustomGameManager.csproj.CoreCompileInputs.cache
 C:\Users\Gibson\Downloads\GameManager-main\GameManager-main\GameManager(Source)\CustomGameManager\obj\Release\CustomGameManager.exe
 C:\Users\Gibson\Downloads\GameManager-main\GameManager-main\GameManager(Source)\CustomGameManager\obj\Release\CustomGameManager.pdb
+C:\Users\Mastermind\Documents\GitHub\CustomGameManager\GameManager(Source)\CustomGameManager\bin\Release\CustomGameManager.exe.config
+C:\Users\Mastermind\Documents\GitHub\CustomGameManager\GameManager(Source)\CustomGameManager\bin\Release\CustomGameManager.exe
+C:\Users\Mastermind\Documents\GitHub\CustomGameManager\GameManager(Source)\CustomGameManager\bin\Release\CustomGameManager.pdb
+C:\Users\Mastermind\Documents\GitHub\CustomGameManager\GameManager(Source)\CustomGameManager\obj\Release\CustomGameManager.csproj.AssemblyReference.cache
+C:\Users\Mastermind\Documents\GitHub\CustomGameManager\GameManager(Source)\CustomGameManager\obj\Release\CustomGameManager.Form1.resources
+C:\Users\Mastermind\Documents\GitHub\CustomGameManager\GameManager(Source)\CustomGameManager\obj\Release\CustomGameManager.Properties.Resources.resources
+C:\Users\Mastermind\Documents\GitHub\CustomGameManager\GameManager(Source)\CustomGameManager\obj\Release\CustomGameManager.csproj.GenerateResource.cache
+C:\Users\Mastermind\Documents\GitHub\CustomGameManager\GameManager(Source)\CustomGameManager\obj\Release\CustomGameManager.csproj.CoreCompileInputs.cache
+C:\Users\Mastermind\Documents\GitHub\CustomGameManager\GameManager(Source)\CustomGameManager\obj\Release\CustomGameManager.exe
+C:\Users\Mastermind\Documents\GitHub\CustomGameManager\GameManager(Source)\CustomGameManager\obj\Release\CustomGameManager.pdb

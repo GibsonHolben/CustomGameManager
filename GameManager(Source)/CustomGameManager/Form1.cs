@@ -27,6 +27,11 @@ namespace CustomGameManager
                 comboBox1.SelectedIndex = Properties.Settings.Default.ButtonStyle;
 
                 UpdateButtonStyle();
+                games = new Button[] { Game1, Game2, Game3, Game4, Game5, Game6, Game7, Game8, Game9, Game10 };
+                foreach(Button b in games)
+                {
+                    b.Click += Global_Button_Click;
+                }
             }
             catch
             {
@@ -72,6 +77,7 @@ namespace CustomGameManager
             {
                 MessageBox.Show("Unable to find button color");
             }
+           
            
 
         }
@@ -150,63 +156,14 @@ namespace CustomGameManager
         {
             b.Text = ""; 
             b.Image = null;
-        }
-        private void Game1_Click(object sender, EventArgs e)
+                    }
+
+        private void Global_Button_Click(object sender, EventArgs e)
         {
-            setupButton(Game1);
+            setupButton((Button)sender);
         }
 
-        private void Game2_Click(object sender, EventArgs e)
-        {
-            setupButton(Game2);
-        }
-
-        private void Game3_Click(object sender, EventArgs e)
-        {
-            setupButton(Game3);
-        }
-
-        private void Game4_Click(object sender, EventArgs e)
-        {
-            setupButton(Game4);
-
-        }
-
-        private void Game5_Click(object sender, EventArgs e)
-        {
-            setupButton(Game5);
-
-        }
-
-        private void Game6_Click(object sender, EventArgs e)
-        {
-            setupButton(Game6);
-
-        }
-
-        private void Game7_Click(object sender, EventArgs e)
-        {
-            setupButton(Game7);
-
-        }
-
-        private void Game8_Click(object sender, EventArgs e)
-        {
-            setupButton(Game8);
-
-        }
-
-        private void Game9_Click(object sender, EventArgs e)
-        {
-            setupButton(Game9);
-
-        }
-
-        private void Game10_Click(object sender, EventArgs e)
-        {
-            setupButton(Game10);
-
-        }
+       
 
         private void Save_Click(object sender, EventArgs e)
         {
