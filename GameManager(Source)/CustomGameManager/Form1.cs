@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -8,16 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Collections.Generic;
+
 namespace CustomGameManager
 {
     public partial class Form1 : Form
     {
-        Button[] games;
+        List<Button> games = new List<Button>();
+        int offset = 0;
+        int rows = 1;
 
 
         public Form1()
         {
             InitializeComponent();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -27,7 +32,6 @@ namespace CustomGameManager
                 comboBox1.SelectedIndex = Properties.Settings.Default.ButtonStyle;
 
                 UpdateButtonStyle();
-                games = new Button[] { Game1, Game2, Game3, Game4, Game5, Game6, Game7, Game8, Game9, Game10 };
                 foreach(Button b in games)
                 {
                     b.Click += Global_Button_Click;
@@ -35,9 +39,8 @@ namespace CustomGameManager
             }
             catch
             {
-                games = new Button[] { Game1, Game2, Game3, Game4, Game5, Game6, Game7, Game8, Game9, Game10 };
 
-                int whl = games.Length;
+                int whl = games.Count;
                 while (whl > 0)
                 {
                     whl -= 1;
@@ -62,7 +65,7 @@ namespace CustomGameManager
             try
             {
                 ButtonColor.BackColor = Properties.Settings.Default.buttonColor;
-                int whl = games.Length;
+                int whl = games.Count;
                 while (whl > 0)
                 {
                     whl -= 1;
@@ -103,7 +106,7 @@ namespace CustomGameManager
                 MessageBox.Show("Please Input The Game Slot You Would Like To Reset");
             }
             else if (richTextBox1.Text == "all"){
-                int whl = games.Length;
+                int whl = games.Count;
                 while (whl > 0){
                     whl -= 1;
                     if (games[whl].Image != null)
@@ -175,7 +178,7 @@ namespace CustomGameManager
         {
             try
             {
-                int whl = games.Length;
+                int whl = games.Count;
                 while (whl > 0)
                 {
                     whl -= 1;
@@ -203,19 +206,7 @@ namespace CustomGameManager
 
         void nameSetup()
         {
-            games = new Button[] {Game1, Game2, Game3, Game4, Game5, Game6, Game7, Game8, Game9, Game10 };
-           
 
-            Game1.Text = Properties.Settings.Default.one;
-            Game2.Text = Properties.Settings.Default.two;
-            Game3.Text = Properties.Settings.Default.three;
-            Game4.Text = Properties.Settings.Default.four;
-            Game5.Text = Properties.Settings.Default.five;
-            Game6.Text = Properties.Settings.Default.six;
-            Game7.Text = Properties.Settings.Default.seven;
-            Game8.Text = Properties.Settings.Default.eight;
-            Game9.Text = Properties.Settings.Default.nine;
-            Game10.Text = Properties.Settings.Default.ten;
         }
 
         private void Settings_Click(object sender, EventArgs e)
@@ -247,7 +238,7 @@ namespace CustomGameManager
             ColorDialog bgColor = new ColorDialog();
             bgColor.ShowDialog();
             Properties.Settings.Default.buttonColor = bgColor.Color;
-            int whl = games.Length;
+            int whl = games.Count;
             while (whl > 0)
             {
                 whl -= 1;
@@ -260,17 +251,6 @@ namespace CustomGameManager
         {
             Properties.Settings.Default.bgColor = this.BackColor;
 
-
-            Properties.Settings.Default.one = Game1.Text;
-            Properties.Settings.Default.two = Game2.Text;
-            Properties.Settings.Default.three = Game3.Text;
-            Properties.Settings.Default.four = Game4.Text;
-            Properties.Settings.Default.five = Game5.Text;
-            Properties.Settings.Default.six = Game6.Text;
-            Properties.Settings.Default.seven = Game7.Text;
-            Properties.Settings.Default.eight = Game8.Text;
-            Properties.Settings.Default.nine = Game9.Text;
-            Properties.Settings.Default.ten = Game10.Text;
             Properties.Settings.Default.Save();
         }
 
@@ -283,9 +263,8 @@ namespace CustomGameManager
         {
             if (comboBox1.SelectedIndex == 0)
             {
-                games = new Button[] { Game1, Game2, Game3, Game4, Game5, Game6, Game7, Game8, Game9, Game10 };
 
-                int whl = games.Length;
+                int whl = games.Count;
                 while (whl > 0)
                 {
                     whl -= 1;
@@ -295,9 +274,7 @@ namespace CustomGameManager
             }
             if (comboBox1.SelectedIndex == 1)
             {
-                games = new Button[] { Game1, Game2, Game3, Game4, Game5, Game6, Game7, Game8, Game9, Game10 };
-
-                int whl = games.Length;
+                int whl = games.Count;
                 while (whl > 0)
                 {
                     whl -= 1;
@@ -308,6 +285,47 @@ namespace CustomGameManager
 
             Properties.Settings.Default.ButtonStyle = comboBox1.SelectedIndex;
             
+        }
+
+        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            richTextBox1.Text = vScrollBar1.Value.ToString();
+            foreach (Button b in games)
+            {
+                b.Location = new Point(b.Location.X, vScrollBar1.Value + (150 * (games.Count / 6)));
+            }
+        }
+
+        public bool IsDivisible(int x, int n)
+        {
+            return (x % n) == 0;
+           
+        }
+
+        private void Add_Click(object sender, EventArgs e)
+        {
+            if(offset >= 6){
+                 offset = 0;
+            }
+            vScrollBar1.Maximum = rows * 20;
+            Button newButton = new Button();
+            newButton.Enabled = true;
+            newButton.Visible = true;
+            this.Controls.Add(newButton);
+            Double d = (games.Count / 6);
+            newButton.Location = new Point((30 + (offset * 150)), 150 * (games.Count / 6));
+            newButton.Size = new Size(130, 130);
+            games.Add(newButton);
+            offset++;
+            foreach (Button b in games)
+            {
+                b.Click += Global_Button_Click;
+            }
+        }
+
+        private void minus_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

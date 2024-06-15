@@ -29,16 +29,6 @@ namespace CustomGameManager
         /// </summary>
         private void InitializeComponent()
         {
-            this.Game1 = new System.Windows.Forms.Button();
-            this.Game2 = new System.Windows.Forms.Button();
-            this.Game3 = new System.Windows.Forms.Button();
-            this.Game4 = new System.Windows.Forms.Button();
-            this.Game5 = new System.Windows.Forms.Button();
-            this.Game10 = new System.Windows.Forms.Button();
-            this.Game9 = new System.Windows.Forms.Button();
-            this.Game8 = new System.Windows.Forms.Button();
-            this.Game7 = new System.Windows.Forms.Button();
-            this.Game6 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.reset = new System.Windows.Forms.Button();
             this.Save = new System.Windows.Forms.Button();
@@ -52,108 +42,11 @@ namespace CustomGameManager
             this.update = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
+            this.Add = new System.Windows.Forms.Button();
+            this.minus = new System.Windows.Forms.Button();
             this.settingsPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // Game1
-            // 
-            this.Game1.Location = new System.Drawing.Point(12, 12);
-            this.Game1.Name = "Game1";
-            this.Game1.Size = new System.Drawing.Size(182, 182);
-            this.Game1.TabIndex = 0;
-            this.Game1.Text = "Game 1";
-            this.Game1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Game1.UseVisualStyleBackColor = true;
-            // 
-            // Game2
-            // 
-            this.Game2.Location = new System.Drawing.Point(200, 12);
-            this.Game2.Name = "Game2";
-            this.Game2.Size = new System.Drawing.Size(182, 182);
-            this.Game2.TabIndex = 1;
-            this.Game2.Text = "Game 2";
-            this.Game2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Game2.UseVisualStyleBackColor = true;
-            // 
-            // Game3
-            // 
-            this.Game3.Location = new System.Drawing.Point(388, 12);
-            this.Game3.Name = "Game3";
-            this.Game3.Size = new System.Drawing.Size(182, 182);
-            this.Game3.TabIndex = 4;
-            this.Game3.Text = "Game 3";
-            this.Game3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Game3.UseVisualStyleBackColor = true;
-            // 
-            // Game4
-            // 
-            this.Game4.Location = new System.Drawing.Point(576, 12);
-            this.Game4.Name = "Game4";
-            this.Game4.Size = new System.Drawing.Size(182, 182);
-            this.Game4.TabIndex = 5;
-            this.Game4.Text = "Game 4";
-            this.Game4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Game4.UseVisualStyleBackColor = true;
-            // 
-            // Game5
-            // 
-            this.Game5.Location = new System.Drawing.Point(764, 12);
-            this.Game5.Name = "Game5";
-            this.Game5.Size = new System.Drawing.Size(182, 182);
-            this.Game5.TabIndex = 6;
-            this.Game5.Text = "Game 5";
-            this.Game5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Game5.UseVisualStyleBackColor = true;
-            // 
-            // Game10
-            // 
-            this.Game10.Location = new System.Drawing.Point(764, 200);
-            this.Game10.Name = "Game10";
-            this.Game10.Size = new System.Drawing.Size(182, 182);
-            this.Game10.TabIndex = 13;
-            this.Game10.Text = "Game 10";
-            this.Game10.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Game10.UseVisualStyleBackColor = true;
-            // 
-            // Game9
-            // 
-            this.Game9.Location = new System.Drawing.Point(576, 200);
-            this.Game9.Name = "Game9";
-            this.Game9.Size = new System.Drawing.Size(182, 182);
-            this.Game9.TabIndex = 10;
-            this.Game9.Text = "Game 9";
-            this.Game9.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Game9.UseVisualStyleBackColor = true;
-            // 
-            // Game8
-            // 
-            this.Game8.Location = new System.Drawing.Point(388, 200);
-            this.Game8.Name = "Game8";
-            this.Game8.Size = new System.Drawing.Size(182, 182);
-            this.Game8.TabIndex = 9;
-            this.Game8.Text = "Game 8";
-            this.Game8.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Game8.UseVisualStyleBackColor = true;
-            // 
-            // Game7
-            // 
-            this.Game7.Location = new System.Drawing.Point(200, 200);
-            this.Game7.Name = "Game7";
-            this.Game7.Size = new System.Drawing.Size(182, 182);
-            this.Game7.TabIndex = 8;
-            this.Game7.Text = "Game 7";
-            this.Game7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Game7.UseVisualStyleBackColor = true;
-            // 
-            // Game6
-            // 
-            this.Game6.Location = new System.Drawing.Point(12, 200);
-            this.Game6.Name = "Game6";
-            this.Game6.Size = new System.Drawing.Size(182, 182);
-            this.Game6.TabIndex = 7;
-            this.Game6.Text = "Game 6";
-            this.Game6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Game6.UseVisualStyleBackColor = true;
             // 
             // richTextBox1
             // 
@@ -205,7 +98,7 @@ namespace CustomGameManager
             this.settingsPanel.Controls.Add(this.label1);
             this.settingsPanel.Location = new System.Drawing.Point(0, 0);
             this.settingsPanel.Name = "settingsPanel";
-            this.settingsPanel.Size = new System.Drawing.Size(964, 431);
+            this.settingsPanel.Size = new System.Drawing.Size(964, 20);
             this.settingsPanel.TabIndex = 18;
             this.settingsPanel.Visible = false;
             // 
@@ -285,29 +178,51 @@ namespace CustomGameManager
             this.label1.TabIndex = 1;
             this.label1.Text = "Background Color";
             // 
+            // vScrollBar1
+            // 
+            this.vScrollBar1.Location = new System.Drawing.Point(935, 9);
+            this.vScrollBar1.Maximum = 20;
+            this.vScrollBar1.Name = "vScrollBar1";
+            this.vScrollBar1.Size = new System.Drawing.Size(14, 408);
+            this.vScrollBar1.TabIndex = 19;
+            this.vScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
+            // 
+            // Add
+            // 
+            this.Add.Location = new System.Drawing.Point(841, 394);
+            this.Add.Name = "Add";
+            this.Add.Size = new System.Drawing.Size(23, 22);
+            this.Add.TabIndex = 20;
+            this.Add.Text = "+";
+            this.Add.UseVisualStyleBackColor = true;
+            this.Add.Click += new System.EventHandler(this.Add_Click);
+            // 
+            // minus
+            // 
+            this.minus.Location = new System.Drawing.Point(812, 394);
+            this.minus.Name = "minus";
+            this.minus.Size = new System.Drawing.Size(23, 22);
+            this.minus.TabIndex = 21;
+            this.minus.Text = "-";
+            this.minus.UseVisualStyleBackColor = true;
+            this.minus.Click += new System.EventHandler(this.minus_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(961, 426);
+            this.Controls.Add(this.minus);
+            this.Controls.Add(this.Add);
+            this.Controls.Add(this.vScrollBar1);
             this.Controls.Add(this.settingsPanel);
             this.Controls.Add(this.Settings);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.reset);
             this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.Game10);
-            this.Controls.Add(this.Game9);
-            this.Controls.Add(this.Game8);
-            this.Controls.Add(this.Game7);
-            this.Controls.Add(this.Game6);
-            this.Controls.Add(this.Game5);
-            this.Controls.Add(this.Game4);
-            this.Controls.Add(this.Game3);
-            this.Controls.Add(this.Game2);
-            this.Controls.Add(this.Game1);
             this.Name = "Form1";
-            this.Text = "Game Manager by therealmastermind";
+            this.Text = "/";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.settingsPanel.ResumeLayout(false);
             this.settingsPanel.PerformLayout();
@@ -316,17 +231,6 @@ namespace CustomGameManager
         }
 
         #endregion
-
-        private System.Windows.Forms.Button Game1;
-        private System.Windows.Forms.Button Game2;
-        private System.Windows.Forms.Button Game3;
-        private System.Windows.Forms.Button Game4;
-        private System.Windows.Forms.Button Game5;
-        private System.Windows.Forms.Button Game10;
-        private System.Windows.Forms.Button Game9;
-        private System.Windows.Forms.Button Game8;
-        private System.Windows.Forms.Button Game7;
-        private System.Windows.Forms.Button Game6;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button reset;
         private System.Windows.Forms.Button Save;
@@ -340,6 +244,9 @@ namespace CustomGameManager
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.VScrollBar vScrollBar1;
+        private System.Windows.Forms.Button Add;
+        private System.Windows.Forms.Button minus;
     }
 }
 
