@@ -1,0 +1,182 @@
+0 [LOG] Action drag is in universe All
+0 [LOG] Action delete is in universe All
+0 [LOG] Action activateDirect is in universe Game
+0 [LOG] Action slowmo is in universe Game
+0 [LOG] Action toggleLimbStatus is in universe Game
+0 [LOG] Action time is in universe Game
+0 [LOG] Action tool1 is in universe Game
+0 [LOG] Action tool2 is in universe Game
+0 [LOG] Action tool3 is in universe Game
+0 [LOG] Action tool4 is in universe Game
+0 [LOG] Action tool5 is in universe Game
+0 [LOG] Action tool6 is in universe Game
+0 [LOG] Action tool7 is in universe Game
+0 [LOG] Action tool8 is in universe Game
+0 [LOG] Action tool9 is in universe Game
+0 [LOG] Action spawnLeft is in universe Game
+0 [LOG] Action spawnRight is in universe Game
+0 [LOG] Action left is in universe All
+0 [LOG] Action right is in universe All
+0 [LOG] Action fast is in universe All
+0 [LOG] Action undo is in universe All
+0 [LOG] Action snap is in universe All
+0 [LOG] Action snapToCenter is in universe Game
+0 [LOG] Action copy is in universe All
+0 [LOG] Action paste is in universe All
+0 [LOG] Action context is in universe All
+0 [LOG] Action igniteSelection is in universe Game
+0 [LOG] Action freezeSelection is in universe Game
+0 [LOG] Action resizeSelection is in universe Game
+0 [LOG] Action arrangeSelection is in universe Game
+0 [LOG] Action toggleThermalVision is in universe Game
+0 [LOG] Action eyedrop is in universe All
+0 [LOG] Action arrangeDown is in universe All
+0 [LOG] Action arrangeUp is in universe All
+0 [LOG] Action arrangeFront is in universe All
+0 [LOG] Action arrangeBack is in universe All
+0 [LOG] Action pause is in universe All
+0 [LOG] Action toybox is in universe All
+0 [LOG] Action toggleUi is in universe All
+0 [LOG] Action toolPowerToggle is in universe Game
+0 [LOG] Action toggleHoveringHighlights is in universe Game
+0 [LOG] Action pan is in universe All
+0 [LOG] Action panRight is in universe All
+0 [LOG] Action panLeft is in universe All
+0 [LOG] Action panUp is in universe All
+0 [LOG] Action panDown is in universe All
+0 [LOG] Action zoomIn is in universe All
+0 [LOG] Action zoomOut is in universe All
+0 [LOG] Jukebox not found. Can't load custom jukebox files.
+0 [LOG] {
+  "CollisionQuality": "Dynamic",
+  "StopAnimationOnDamage": false,
+  "DropOnDeath": true,
+  "ShakeIntensity": 1.0,
+  "ShowOutlines": true,
+  "SlowMotionSpeed": 20.0,
+  "AmbientTemperatureTransfer": false,
+  "PhysicsIterations": 16,
+  "ShowModLoadingFreeze": true,
+  "RejectShadyCode": true,
+  "MaxModCompilationTime": 30,
+  "GorelessMode": false,
+  "ProceduralFragments": false,
+  "FragilityMultiplier": 1.0,
+  "LimbCrushing": true,
+  "BrainDamage": true,
+  "LimbOverflowExplosion": false,
+  "GoreMode": "Default",
+  "AutoHealWounds": true,
+  "ChunkyShotParticles": true,
+  "DismembermentLooseTissue": true,
+  "CrushForceMultiplier": 1.0,
+  "BloomMode": "Fancy",
+  "TracerBullets": true,
+  "FancyEffects": true,
+  "Decals": true,
+  "Lighting": true,
+  "MasterVolume": 1.0,
+  "SfxVolume": 1.0,
+  "UserInterfaceVolume": 1.0,
+  "AmbienceVolume": 1.0,
+  "AmbienceHighpassCutoff": 90.0,
+  "ClampVolume": true,
+  "DistantSoundEffects": true,
+  "LogDebugMessages": false,
+  "ShowFramerate": false,
+  "ZoomSensitivity": 1.0,
+  "ThermalVisionUpdateRate": 25,
+  "DeleteWireByContextMenu": true,
+  "TemperatureUnit": "Celsius",
+  "VSync": false,
+  "SMAA": false,
+  "TonemappingMode": "Modern",
+  "Brightness": 100.0,
+  "RenderScale": 1.0,
+  "FramerateLimit": 144,
+  "SimplifiedBackground": false,
+  "WindowMode": "Borderless",
+  "Resolution": null,
+  "ShowTutorial": true,
+  "ToyboxSizeOffset": 483.6
+}
+0 [LOG] Registered map "Abyss" with ID cce24b21-779f-44e4-a4f5-9cc5c3fc6b18
+0 [LOG] Registered map "Blocks" with ID b77a3f22-10da-4ef5-9dce-0413f15e15c1
+0 [LOG] Registered map "Default" with ID fb813068-e717-45de-a97f-4677a41758e6
+0 [LOG] Registered map "Humongous" with ID 8a2f165e-d4e9-4e6c-b20c-8ffa660c10c8
+0 [LOG] Registered map "Hybrid" with ID 1f444372-71ce-4862-a02e-708d82eb9dc0
+0 [LOG] Registered map "Lava" with ID 498b4aad-0ccc-4167-aee2-324a28cd57ae
+0 [LOG] Registered map "Sea" with ID 35a41d94-8bc7-47a2-93de-3a297955e97c
+0 [LOG] Registered map "Slanted" with ID 75c18cc2-5e0d-4e3c-b966-c852cdd1bb8b
+0 [LOG] Registered map "Small" with ID 544cf3d4-018d-4dd1-b442-b3845e07f1a3
+0 [LOG] Registered map "Snow" with ID 3924fb95-dc1d-43e9-b8b1-b161b91c1f9b
+0 [LOG] Registered map "Tiny" with ID 5b8c90b2-59fb-4fc7-9915-229cbc04ef0d
+0 [LOG] Registered map "Tower" with ID 5bb837ca-bbf1-4b64-a39d-33b0ab684e1d
+0 [LOG] Registered map "Void" with ID 265b1c13-c372-4ea4-8448-09731f0b0985
+0 [LOG] Registered map "Substructure" with ID 004cb5da-0d40-4fc7-aba2-d86a9659c724
+0 [ERROR] Failed to read trust cache: Could not find a part of the path "C:\Users\Mastermind\Documents\GitHub\CustomGameManager\GameManager(Source)\CustomGameManager\bin\Release\People Playground_Data\tc.bin".
+	0x00007fffda4bec7c (UnityPlayer) 
+0x00007fffda4c3ac3 (UnityPlayer) 
+0x00007fffda4ae09d (UnityPlayer) 
+0x00007fffdae83829 (UnityPlayer) UnityMain
+0x00007fffda903f40 (UnityPlayer) UnityMain
+0x000001959f67acae (Mono JIT Code) (wrapper managed-to-native) UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+0x000001959f67a9bb (Mono JIT Code) UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+0x000001959f682b11 (Mono JIT Code) UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+0x00000195a0d9e10a (Mono JIT Code) UnityEngine.Debug:LogErrorFormat (string,object[])
+0x00000195a0d9db0b (Mono JIT Code) TrustCache:Load ()
+0x00000195a0d9a963 (Mono JIT Code) BackgroundItemLoader/<LoadingCoroutine>d__9:MoveNext ()
+0x000001959f9ab20c (Mono JIT Code) UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+0x000001959f9ab337 (Mono JIT Code) (wrapper runtime-invoke) <Module>:runtime_invoke_void_object_intptr (object,intptr,intptr,intptr)
+0x00007fffe55de480 (mono-2.0-bdwgc) mono_get_runtime_build_info
+0x00007fffe5562902 (mono-2.0-bdwgc) mono_perfcounters_init
+0x00007fffe556b95f (mono-2.0-bdwgc) mono_runtime_invoke
+0x00007fffda89233d (UnityPlayer) UnityMain
+0x00007fffda88f5c2 (UnityPlayer) UnityMain
+0x00007fffda872cb5 (UnityPlayer) UnityMain
+0x00007fffda87d251 (UnityPlayer) UnityMain
+0x00007fffda87c493 (UnityPlayer) UnityMain
+0x00007fffda9651f4 (UnityPlayer) UnityMain
+0x000001959f9ab0e9 (Mono JIT Code) (wrapper managed-to-native) UnityEngine.MonoBehaviour:StartCoroutineManaged2 (UnityEngine.MonoBehaviour,System.Collections.IEnumerator)
+0x000001959f9aae53 (Mono JIT Code) UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+0x00000195a0d9a423 (Mono JIT Code) BackgroundItemLoader:Start ()
+0x00000194ee196920 (Mono JIT Code) (wrapper runtime-invoke) object:runtime_invoke_void__this__ (object,intptr,intptr,intptr)
+0x00007fffe55de480 (mono-2.0-bdwgc) mono_get_runtime_build_info
+0x00007fffe5562902 (mono-2.0-bdwgc) mono_perfcounters_init
+0x00007fffe556b95f (mono-2.0-bdwgc) mono_runtime_invoke
+0x00007fffda89233d (UnityPlayer) UnityMain
+0x00007fffda88f5c2 (UnityPlayer) UnityMain
+0x00007fffda879da0 (UnityPlayer) UnityMain
+0x00007fffda879e2e (UnityPlayer) UnityMain
+0x00007fffda87762a (UnityPlayer) UnityMain
+0x00007fffda5f4f44 (UnityPlayer) UnityMain
+0x00007fffda722ada (UnityPlayer) UnityMain
+0x00007fffda722b80 (UnityPlayer) UnityMain
+0x00007fffda7268d8 (UnityPlayer) UnityMain
+0x00007fffda4ebc4a (UnityPlayer) 
+0x00007fffda4ea2bd (UnityPlayer) 
+0x00007fffda4ef392 (UnityPlayer) 
+0x00007fffda4f02ab (UnityPlayer) UnityMain
+0x00007ff7d60011f2 (People Playground) 
+0x00007ff89888257d (KERNEL32) BaseThreadInitThunk
+0x00007ff898feaa48 (ntdll) RtlUserThreadStart
+
+
+0 [LOG] Started background loading task: Steam Workshop Retrieving list
+2.26 [LOG] Finished background loading task: Steam Workshop Retrieving list
+2.26 [LOG] Started background loading task: Contraptions Reading
+2.28 [LOG] Finished background loading task: Contraptions Reading
+2.28 [LOG] Started background loading task: Contraptions Synchronising
+2.29 [LOG] Finished background loading task: Contraptions Synchronising
+16.61 [EXCEPTION] DirectoryNotFoundException: Could not find a part of the path "C:\Users\Mastermind\Documents\GitHub\CustomGameManager\GameManager(Source)\CustomGameManager\bin\Release\People Playground_Data\tc.bin".
+	System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize, System.Boolean anonymous, System.IO.FileOptions options) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+(wrapper remoting-invoke-with-check) System.IO.FileStream..ctor(string,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,int)
+System.IO.File.Create (System.String path, System.Int32 bufferSize) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+System.IO.File.Create (System.String path) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+System.IO.File.WriteAllBytes (System.String path, System.Byte[] bytes) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+TrustCache.Save () (at <05ef5c21f20b48069e98ceefdb5d9a6e>:0)
+BackgroundItemLoader.OnApplicationQuit () (at <05ef5c21f20b48069e98ceefdb5d9a6e>:0)
+
+
+16.61 [LOG] Compiler client stopped and server terminated.

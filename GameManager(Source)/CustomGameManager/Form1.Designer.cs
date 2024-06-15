@@ -45,20 +45,22 @@ namespace CustomGameManager
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.Add = new System.Windows.Forms.Button();
             this.minus = new System.Windows.Forms.Button();
+            this.Taskbar = new System.Windows.Forms.Panel();
             this.settingsPanel.SuspendLayout();
+            this.Taskbar.SuspendLayout();
             this.SuspendLayout();
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 388);
+            this.richTextBox1.Location = new System.Drawing.Point(7, 6);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(100, 28);
+            this.richTextBox1.Size = new System.Drawing.Size(150, 20);
             this.richTextBox1.TabIndex = 14;
-            this.richTextBox1.Text = "";
+            this.richTextBox1.Text = "(Index starts at 0)";
             // 
             // reset
             // 
-            this.reset.Location = new System.Drawing.Point(118, 393);
+            this.reset.Location = new System.Drawing.Point(161, 4);
             this.reset.Name = "reset";
             this.reset.Size = new System.Drawing.Size(76, 23);
             this.reset.TabIndex = 15;
@@ -68,7 +70,7 @@ namespace CustomGameManager
             // 
             // Save
             // 
-            this.Save.Location = new System.Drawing.Point(870, 393);
+            this.Save.Location = new System.Drawing.Point(853, 3);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(76, 23);
             this.Save.TabIndex = 16;
@@ -78,7 +80,7 @@ namespace CustomGameManager
             // 
             // Settings
             // 
-            this.Settings.Location = new System.Drawing.Point(443, 393);
+            this.Settings.Location = new System.Drawing.Point(714, 4);
             this.Settings.Name = "Settings";
             this.Settings.Size = new System.Drawing.Size(75, 23);
             this.Settings.TabIndex = 17;
@@ -98,7 +100,7 @@ namespace CustomGameManager
             this.settingsPanel.Controls.Add(this.label1);
             this.settingsPanel.Location = new System.Drawing.Point(0, 0);
             this.settingsPanel.Name = "settingsPanel";
-            this.settingsPanel.Size = new System.Drawing.Size(964, 20);
+            this.settingsPanel.Size = new System.Drawing.Size(964, 428);
             this.settingsPanel.TabIndex = 18;
             this.settingsPanel.Visible = false;
             // 
@@ -158,7 +160,7 @@ namespace CustomGameManager
             // 
             // update
             // 
-            this.update.Location = new System.Drawing.Point(874, 394);
+            this.update.Location = new System.Drawing.Point(857, 394);
             this.update.Name = "update";
             this.update.Size = new System.Drawing.Size(75, 23);
             this.update.TabIndex = 2;
@@ -189,7 +191,7 @@ namespace CustomGameManager
             // 
             // Add
             // 
-            this.Add.Location = new System.Drawing.Point(841, 394);
+            this.Add.Location = new System.Drawing.Point(824, 4);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(23, 22);
             this.Add.TabIndex = 20;
@@ -199,13 +201,26 @@ namespace CustomGameManager
             // 
             // minus
             // 
-            this.minus.Location = new System.Drawing.Point(812, 394);
+            this.minus.Location = new System.Drawing.Point(795, 4);
             this.minus.Name = "minus";
             this.minus.Size = new System.Drawing.Size(23, 22);
             this.minus.TabIndex = 21;
             this.minus.Text = "-";
             this.minus.UseVisualStyleBackColor = true;
-            this.minus.Click += new System.EventHandler(this.minus_Click);
+            // 
+            // Taskbar
+            // 
+            this.Taskbar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Taskbar.Controls.Add(this.richTextBox1);
+            this.Taskbar.Controls.Add(this.reset);
+            this.Taskbar.Controls.Add(this.Settings);
+            this.Taskbar.Controls.Add(this.minus);
+            this.Taskbar.Controls.Add(this.Save);
+            this.Taskbar.Controls.Add(this.Add);
+            this.Taskbar.Location = new System.Drawing.Point(0, 384);
+            this.Taskbar.Name = "Taskbar";
+            this.Taskbar.Size = new System.Drawing.Size(932, 44);
+            this.Taskbar.TabIndex = 22;
             // 
             // Form1
             // 
@@ -213,19 +228,15 @@ namespace CustomGameManager
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(961, 426);
-            this.Controls.Add(this.minus);
-            this.Controls.Add(this.Add);
-            this.Controls.Add(this.vScrollBar1);
             this.Controls.Add(this.settingsPanel);
-            this.Controls.Add(this.Settings);
-            this.Controls.Add(this.Save);
-            this.Controls.Add(this.reset);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.Taskbar);
+            this.Controls.Add(this.vScrollBar1);
             this.Name = "Form1";
             this.Text = "/";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.settingsPanel.ResumeLayout(false);
             this.settingsPanel.PerformLayout();
+            this.Taskbar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -247,6 +258,7 @@ namespace CustomGameManager
         private System.Windows.Forms.VScrollBar vScrollBar1;
         private System.Windows.Forms.Button Add;
         private System.Windows.Forms.Button minus;
+        private System.Windows.Forms.Panel Taskbar;
     }
 }
 

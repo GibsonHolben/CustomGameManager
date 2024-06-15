@@ -1,0 +1,41 @@
+0 [LOG] Action drag is in universe All
+0 [LOG] Action delete is in universe All
+0 [LOG] Action activateDirect is in universe Game
+0 [LOG] Action slowmo is in universe Game
+0 [LOG] Action toggleLimbStatus is in universe Game
+0 [LOG] Action time is in universe Game
+0 [LOG] Action tool1 is in universe Game
+0 [LOG] Action tool2 is in universe Game
+0 [LOG] Action tool3 is in universe Game
+0 [LOG] Action tool4 is in universe Game
+0 [EXCEPTION] IOException: Sharing violation on path C:\Users\Mastermind\Documents\GitHub\CustomGameManager\GameManager(Source)\CustomGameManager\bin\Release\ControlScheme.json
+	System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize, System.Boolean anonymous, System.IO.FileOptions options) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize, System.IO.FileOptions options, System.String msgPath, System.Boolean bFromProxy, System.Boolean useLongPath, System.Boolean checkHost) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+(wrapper remoting-invoke-with-check) System.IO.FileStream..ctor(string,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,int,System.IO.FileOptions,string,bool,bool,bool)
+System.IO.StreamWriter.CreateFile (System.String path, System.Boolean append, System.Boolean checkHost) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+System.IO.StreamWriter..ctor (System.String path, System.Boolean append, System.Text.Encoding encoding, System.Int32 bufferSize, System.Boolean checkHost) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+System.IO.StreamWriter..ctor (System.String path, System.Boolean append, System.Text.Encoding encoding, System.Int32 bufferSize) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+System.IO.StreamWriter..ctor (System.String path, System.Boolean append, System.Text.Encoding encoding) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+(wrapper remoting-invoke-with-check) System.IO.StreamWriter..ctor(string,bool,System.Text.Encoding)
+System.IO.File.WriteAllText (System.String path, System.String contents, System.Text.Encoding encoding) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+System.IO.File.WriteAllText (System.String path, System.String contents) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+InputSystem.Save () (at <05ef5c21f20b48069e98ceefdb5d9a6e>:0)
+ControlSchemeEditorBehaviour.CreateControlObject (ActionRepresentation action) (at <05ef5c21f20b48069e98ceefdb5d9a6e>:0)
+ControlSchemeEditorBehaviour.InitialiseControlScheme () (at <05ef5c21f20b48069e98ceefdb5d9a6e>:0)
+ControlSchemeEditorBehaviour.Awake () (at <05ef5c21f20b48069e98ceefdb5d9a6e>:0)
+UnityEngine.GameObject:SetActive(Boolean)
+MenuController:Awake()
+
+
+0 [LOG] Compiler client stopped and server terminated.
+0 [EXCEPTION] DirectoryNotFoundException: Could not find a part of the path "C:\Users\Mastermind\Documents\GitHub\CustomGameManager\GameManager(Source)\CustomGameManager\bin\Release\People Playground_Data\tc.bin".
+	System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize, System.Boolean anonymous, System.IO.FileOptions options) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+System.IO.FileStream..ctor (System.String path, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share, System.Int32 bufferSize) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+(wrapper remoting-invoke-with-check) System.IO.FileStream..ctor(string,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,int)
+System.IO.File.Create (System.String path, System.Int32 bufferSize) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+System.IO.File.Create (System.String path) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+System.IO.File.WriteAllBytes (System.String path, System.Byte[] bytes) (at <eae584ce26bc40229c1b1aa476bfa589>:0)
+TrustCache.Save () (at <05ef5c21f20b48069e98ceefdb5d9a6e>:0)
+BackgroundItemLoader.OnApplicationQuit () (at <05ef5c21f20b48069e98ceefdb5d9a6e>:0)
+
+

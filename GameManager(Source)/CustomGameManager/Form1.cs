@@ -1,125 +1,129 @@
 ﻿using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.IO;
 
 namespace CustomGameManager
 {
     public partial class Form1 : Form
     {
-        List<Button> games = new List<Button>();
+        /**Holds all the buttons for the tasks*/
+        List<Button> PathButtons = new List<Button>();
+
+        /**The x offset of the buttons*/
         int offset = 0;
+
+        /**How many rows of buttons there are (used for buttons array)*/
         int rows = 1;
 
+        /**Holds the last momement of the scrollbar*/
+        int lastVMove = 0;
 
+        /**The path to the .ini File*/
+        string path;
+
+        /**The home path of the user*/
+        string homePath = (Environment.OSVersion.Platform == PlatformID.Unix ||
+                           Environment.OSVersion.Platform == PlatformID.MacOSX)
+                         ? Environment.GetEnvironmentVariable("HOME")
+                         : Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%");
+
+
+
+        /**initilizes the form*/
         public Form1()
         {
             InitializeComponent();
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            try
-            {
+        /**Sets up the variables and load settings*/
+        private void Form1_Load(object sender, EventArgs e){
+            path = homePath + "/Documents/GameManager.ini";
+            LoadButtons();
+            try{
                 comboBox1.SelectedIndex = Properties.Settings.Default.ButtonStyle;
-
                 UpdateButtonStyle();
-                foreach(Button b in games)
-                {
+                foreach(Button b in PathButtons){
+                    try{b.Click -= Global_Button_Click;}
+                    catch{Console.WriteLine("no event to rem");}
                     b.Click += Global_Button_Click;
                 }
             }
-            catch
-            {
-
-                int whl = games.Count;
-                while (whl > 0)
+            catch{
+                foreach (Button b in PathButtons)
                 {
-                    whl -= 1;
-                    games[whl].FlatStyle = FlatStyle.Standard;
+                    b.FlatStyle = FlatStyle.Standard;
                 }
             }
           
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            nameSetup();
             iconSetup();
-            try
-            {
+            ButtonSettingsLoad();
+        }
+
+        /**Loads the color and such settings for the buttons*/
+        private void ButtonSettingsLoad(){
+            try {
                 this.BackColor = Properties.Settings.Default.bgColor;
+                Taskbar.BackColor = Properties.Settings.Default.bgColor;
+                settingsPanel.BackColor = Properties.Settings.Default.bgColor;
                 ColorButton.BackColor = Properties.Settings.Default.bgColor;
+                ButtonColor.BackColor = Properties.Settings.Default.buttonColor;
+                reset.BackColor = Properties.Settings.Default.buttonColor;
+                Save.BackColor = Properties.Settings.Default.buttonColor;
+                Settings.BackColor = Properties.Settings.Default.buttonColor;
+                richTextBox1.BackColor = Properties.Settings.Default.buttonColor;
+                Add.BackColor = Properties.Settings.Default.buttonColor;
+                minus.BackColor = Properties.Settings.Default.buttonColor;
+                foreach (Button b in PathButtons)
+                {
+                    b.BackColor = Properties.Settings.Default.buttonColor;
+                }
             }
             catch
             {
+                MessageBox.Show("Unable to find button color. Defaulting to base");
                 this.BackColor = Color.Black;
                 ColorButton.BackColor = Color.White;
             }
-            try
-            {
-                ButtonColor.BackColor = Properties.Settings.Default.buttonColor;
-                int whl = games.Count;
-                while (whl > 0)
-                {
-                    whl -= 1;
-                    games[whl].BackColor = Properties.Settings.Default.buttonColor;
-                }
-                reset.BackColor = Properties.Settings.Default.buttonColor;
-                Save.BackColor = Properties.Settings.Default.buttonColor; 
-                Settings.BackColor = Properties.Settings.Default.buttonColor; 
-                richTextBox1.BackColor = Properties.Settings.Default.buttonColor;
-            }
-            catch
-            {
-                MessageBox.Show("Unable to find button color");
-            }
-           
-           
 
         }
 
-        public static Icon ExtractIconFromFilePath(string executablePath)
-        {
+        /**Extracts the icon from a file*/
+        public static Icon ExtractIconFromFilePath(string executablePath){
             Icon result = (Icon)null;
-
-            try
-            {
+            try{
                 result = Icon.ExtractAssociatedIcon(executablePath);
             }
-            catch (Exception)
-            {
+            catch (Exception){
                 Console.WriteLine("Unable to extract the icon from the binary");
             }
-
             return result;
         }
 
+
+        /**Resets the given button*/
         private void reset_Click(object sender, EventArgs e){
             if(richTextBox1.Text == ""){
-                MessageBox.Show("Please Input The Game Slot You Would Like To Reset");
+                MessageBox.Show("Please Input The Game Slot You Would Like To Reset (index starts at 0)");
             }
             else if (richTextBox1.Text == "all"){
-                int whl = games.Count;
+                int whl = PathButtons.Count;
                 while (whl > 0){
                     whl -= 1;
-                    if (games[whl].Image != null)
-                        games[whl].Image = null;
-                    if (games[whl].Text != "")
-                        games[whl].Text = "";
+                    if (PathButtons[whl].Image != null)
+                        PathButtons[whl].Image = null;
+                    if (PathButtons[whl].Text != "")
+                        PathButtons[whl].Text = "";
                 }
             }
-            else
-            {
-
+            else{
                 try{
-                    clear(games[Int32.Parse(richTextBox1.Text)]);
+                    clear(PathButtons[Int32.Parse(richTextBox1.Text)]);
                 }
                 catch{
                     MessageBox.Show("Please enter a number");
@@ -128,204 +132,209 @@ namespace CustomGameManager
             }
         }
 
-        private void setupButton(Button game)
-        {
-            if (game.Text == "")
+        /**Loads the buttons from the settings file*/
+        private void LoadButtons(){
+            string settingsString = "";
+            using (StreamReader sr = File.OpenText(path)){
+                string s = "";
+                while ((s = sr.ReadLine()) != null){
+                    settingsString += s;
+                }
+            }
+            string[] settings = settingsString.Split('|');
+            string[] buttonsSettings = settings[1].Split(',');
+            for(int i = 0; i < Int32.Parse(settings[0]); i++)
             {
+                createButton();
+                PathButtons[i].Text = buttonsSettings[i];
+            }
+        }
+
+        /**Opens the file manager if no path has been saved, else attempts to run the application*/
+        private void ButtonClickEvent(Button game){
+            if (game.Text == ""){
                 OpenFileDialog fd = new OpenFileDialog();
                 fd.ShowDialog();
                 game.Text = fd.FileName;
-            }
-            else
-            {
-                try
+                if (game.Text != "")
                 {
+                    Icon theIcon2 = ExtractIconFromFilePath(game.Text);
+                    game.Image = theIcon2.ToBitmap();
+                }
+            }
+            else{
+                try{
                     Process.Start(game.Text);
                 }
-                catch
-                {
-                    MessageBox.Show("Path was not found");
-
+                catch{
+                    MessageBox.Show("Path was not found/File could not be run");
                 }
             }
-
-            if (game.Text != "")
-            {
-                Icon theIcon2 = ExtractIconFromFilePath(game.Text);
-                game.Image = theIcon2.ToBitmap();
-            }
         }
-        private void clear(Button b)
-        {
+
+        /**Clears a buttons information*/
+        private void clear(Button b){
             b.Text = ""; 
             b.Image = null;
-                    }
-
-        private void Global_Button_Click(object sender, EventArgs e)
-        {
-            setupButton((Button)sender);
         }
 
-       
+        /**Runs when any button from the array has been clicked*/
+        private void Global_Button_Click(object sender, EventArgs e){
+            ButtonClickEvent((Button)sender);
+        }
 
-        private void Save_Click(object sender, EventArgs e)
-        {
+
+        /**Calls SaveFile*/
+        private void Save_Click(object sender, EventArgs e){
             SaveFile();
         }
 
-
-        void iconSetup()
-        {
-            try
+        /**Sets the icon for all the buttons*/
+        void iconSetup(){
+            foreach (Button b in PathButtons)
             {
-                int whl = games.Count;
-                while (whl > 0)
-                {
-                    whl -= 1;
-                    if (games[whl].Text != "")
-                    {
-                        try
-                        {
-                            Icon theIcon1 = ExtractIconFromFilePath(games[whl].Text);
-                            games[whl].Image = theIcon1.ToBitmap();
-                        }
-                        catch
-                        {
-                           MessageBox.Show("Could not find bitmap image for: " + games[whl].Text);
-                        }
 
+                if (b.Text != "")
+                {
+                    try
+                    {
+                        Icon theIcon1 = ExtractIconFromFilePath(b.Text);
+                        b.Image = theIcon1.ToBitmap();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Could not find bitmap image for: " + b.Text);
                     }
                 }
             }
-            catch
-            {
-
-            }
-        }
-        
-
-        void nameSetup()
-        {
-
         }
 
-        private void Settings_Click(object sender, EventArgs e)
-        {
+        /**Shows the setting menu*/
+        private void Settings_Click(object sender, EventArgs e){
             settingsPanel.Show();
         }
-
-        private void update_Click(object sender, EventArgs e)
-        {
-            reset.BackColor = Properties.Settings.Default.buttonColor;
-            Save.BackColor = Properties.Settings.Default.buttonColor;
-            Settings.BackColor = Properties.Settings.Default.buttonColor;
-            richTextBox1.BackColor = Properties.Settings.Default.buttonColor;
-            ButtonColor.BackColor = Properties.Settings.Default.buttonColor;
+        /**updates the settings and closed the setting menu*/
+        private void update_Click(object sender, EventArgs e){
+            ButtonSettingsLoad();
             settingsPanel.Hide();
             SaveFile();
         }
-
-        private void ColorButton_Click(object sender, EventArgs e)
-        {
+        /**Opens the color chooser for the buttons*/
+        private void ColorButton_Click(object sender, EventArgs e){
             ColorDialog bgColor = new ColorDialog();
             bgColor.ShowDialog();
             ColorButton.BackColor = bgColor.Color;
             this.BackColor = bgColor.Color;
         }
-
-        private void ButtonColor_Click(object sender, EventArgs e)
-        {
+        /**Opens the color chooser for the background*/
+        private void ButtonColor_Click(object sender, EventArgs e){
             ColorDialog bgColor = new ColorDialog();
             bgColor.ShowDialog();
             Properties.Settings.Default.buttonColor = bgColor.Color;
-            int whl = games.Count;
+            int whl = PathButtons.Count;
             while (whl > 0)
             {
                 whl -= 1;
-                games[whl].BackColor = bgColor.Color;
+                PathButtons[whl].BackColor = bgColor.Color;
             }
           
         }
-
-        void SaveFile()
-        {
+        /**Saves the settings to a file*/
+        void SaveFile(){
             Properties.Settings.Default.bgColor = this.BackColor;
-
             Properties.Settings.Default.Save();
-        }
+            String settingBuild = PathButtons.Count + "|";
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            foreach (Button b in PathButtons){
+                settingBuild += b.Text + ",";
+            }
+
+            try{
+                if (File.Exists(path)){
+                    //writes to file
+                    System.IO.File.WriteAllText(path, settingBuild);
+                }
+                else{
+                    // Create the file.
+                    using (FileStream fs = File.Create(path)){
+                        System.IO.File.WriteAllText(path, settingBuild);
+                        fs.Close();
+                    }
+
+                }
+            }
+            catch (Exception ex){
+                MessageBox.Show("An eror has happened. If this issue persists please open an issue on the github");
+                Console.WriteLine(ex.ToString());
+            }
+
+        }
+        /**calls the update for the style of the buttons*/
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e){
             UpdateButtonStyle();
         }
 
-        void UpdateButtonStyle()
-        {
-            if (comboBox1.SelectedIndex == 0)
-            {
+        /**Updates the style of the button*/
+        void UpdateButtonStyle(){
+            if (comboBox1.SelectedIndex == 0){
 
-                int whl = games.Count;
-                while (whl > 0)
-                {
-                    whl -= 1;
-                    games[whl].FlatStyle = FlatStyle.Standard;
+                foreach (Button b in PathButtons)
+                { 
+                    b.FlatStyle = FlatStyle.Standard;
+                }
+            }
+            if (comboBox1.SelectedIndex == 1){
+                foreach (Button b in PathButtons){
+                    b.FlatStyle = FlatStyle.Flat;
                 }
 
             }
-            if (comboBox1.SelectedIndex == 1)
-            {
-                int whl = games.Count;
-                while (whl > 0)
-                {
-                    whl -= 1;
-                    games[whl].FlatStyle = FlatStyle.Flat;
+            Properties.Settings.Default.ButtonStyle = comboBox1.SelectedIndex; 
+        }
+        /**Controlls the scrolling of the buttons (A bit buggy and needs work)*/
+        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e){
+
+            int moveY = 0;
+            if (lastVMove > vScrollBar1.Value)
+                moveY = 1;
+            else if (lastVMove == vScrollBar1.Value)
+                moveY = 0;
+            else
+                moveY = -1;
+
+            foreach (Button b in PathButtons){
+                for(int i =0; i < FindDifference(lastVMove, vScrollBar1.Value); i++){
+                    b.Location = new Point(b.Location.X, b.Location.Y + (moveY * 10));
                 }
-
             }
+            lastVMove = vScrollBar1.Value;
 
-            Properties.Settings.Default.ButtonStyle = comboBox1.SelectedIndex;
-            
         }
-
-        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
-        {
-            richTextBox1.Text = vScrollBar1.Value.ToString();
-            foreach (Button b in games)
-            {
-                b.Location = new Point(b.Location.X, vScrollBar1.Value + (150 * (games.Count / 6)));
-            }
+        /**Finds the differance between 2 numbers */
+        public decimal FindDifference(decimal nr1, decimal nr2){
+            return Math.Abs(nr1 - nr2);
         }
-
-        public bool IsDivisible(int x, int n)
-        {
-            return (x % n) == 0;
-           
+        
+        /**Adds a button*/
+        private void Add_Click(object sender, EventArgs e){
+            createButton();
         }
-
-        private void Add_Click(object sender, EventArgs e)
-        {
-            if(offset >= 6){
-                 offset = 0;
+        /**Creates a button (used for init and click)*/
+        private void createButton(){
+            if (offset >= 6){
+                offset = 0;
+                rows += 1;
             }
             vScrollBar1.Maximum = rows * 20;
             Button newButton = new Button();
-            newButton.Enabled = true;
-            newButton.Visible = true;
             this.Controls.Add(newButton);
-            Double d = (games.Count / 6);
-            newButton.Location = new Point((30 + (offset * 150)), 150 * (games.Count / 6));
+            Double d = (PathButtons.Count / 6);
+            newButton.Location = new Point((30 + (offset * 150)), 30 + (150 * (PathButtons.Count / 6)));
             newButton.Size = new Size(130, 130);
-            games.Add(newButton);
+            newButton.Click += Global_Button_Click;
+            newButton.BackColor = Properties.Settings.Default.buttonColor;
+            PathButtons.Add(newButton);
             offset++;
-            foreach (Button b in games)
-            {
-                b.Click += Global_Button_Click;
-            }
-        }
-
-        private void minus_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
