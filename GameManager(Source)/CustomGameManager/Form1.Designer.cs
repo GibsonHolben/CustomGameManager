@@ -207,6 +207,7 @@ namespace CustomGameManager
             this.minus.TabIndex = 21;
             this.minus.Text = "-";
             this.minus.UseVisualStyleBackColor = true;
+            this.minus.Click += new System.EventHandler(this.minus_Click);
             // 
             // Taskbar
             // 
@@ -232,7 +233,7 @@ namespace CustomGameManager
             this.Controls.Add(this.Taskbar);
             this.Controls.Add(this.vScrollBar1);
             this.Name = "Form1";
-            this.Text = "/";
+            this.Text = "Custom App manager by therealmastermind";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.settingsPanel.ResumeLayout(false);
             this.settingsPanel.PerformLayout();

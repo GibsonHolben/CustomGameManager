@@ -86,8 +86,8 @@ namespace CustomGameManager
             }
             catch
             {
-                MessageBox.Show("Unable to find button color. Defaulting to base");
                 this.BackColor = Color.Black;
+                Taskbar.BackColor = Color.Black;
                 ColorButton.BackColor = Color.White;
             }
 
@@ -219,23 +219,22 @@ namespace CustomGameManager
             settingsPanel.Hide();
             SaveFile();
         }
-        /**Opens the color chooser for the buttons*/
+        /**Opens the color chooser for the background*/
         private void ColorButton_Click(object sender, EventArgs e){
             ColorDialog bgColor = new ColorDialog();
             bgColor.ShowDialog();
             ColorButton.BackColor = bgColor.Color;
+            Properties.Settings.Default.bgColor= bgColor.Color;
             this.BackColor = bgColor.Color;
         }
-        /**Opens the color chooser for the background*/
+        /**Opens the color chooser for the buttons*/
         private void ButtonColor_Click(object sender, EventArgs e){
             ColorDialog bgColor = new ColorDialog();
             bgColor.ShowDialog();
+            ButtonColor.BackColor = bgColor.Color;
             Properties.Settings.Default.buttonColor = bgColor.Color;
-            int whl = PathButtons.Count;
-            while (whl > 0)
-            {
-                whl -= 1;
-                PathButtons[whl].BackColor = bgColor.Color;
+            foreach(Button b in PathButtons){
+                b.BackColor = bgColor.Color;
             }
           
         }
@@ -329,12 +328,25 @@ namespace CustomGameManager
             Button newButton = new Button();
             this.Controls.Add(newButton);
             Double d = (PathButtons.Count / 6);
+            newButton.TextAlign = ContentAlignment.BottomCenter;
             newButton.Location = new Point((30 + (offset * 150)), 30 + (150 * (PathButtons.Count / 6)));
             newButton.Size = new Size(130, 130);
             newButton.Click += Global_Button_Click;
-            newButton.BackColor = Properties.Settings.Default.buttonColor;
+            try
+            {
+                newButton.BackColor = Properties.Settings.Default.buttonColor;
+            }
+            catch
+            {
+                newButton.BackColor = Color.White;
+            }
             PathButtons.Add(newButton);
             offset++;
+        }
+
+        private void minus_Click(object sender, EventArgs e){
+            Controls.Remove(PathButtons[PathButtons.Count - 1]);
+            PathButtons.Remove(PathButtons[PathButtons.Count - 1]);
         }
     }
 }
