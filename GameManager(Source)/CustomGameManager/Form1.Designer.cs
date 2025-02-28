@@ -29,8 +29,6 @@ namespace CustomGameManager
         /// </summary>
         private void InitializeComponent()
         {
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.reset = new System.Windows.Forms.Button();
             this.Save = new System.Windows.Forms.Button();
             this.Settings = new System.Windows.Forms.Button();
             this.settingsPanel = new System.Windows.Forms.Panel();
@@ -46,27 +44,10 @@ namespace CustomGameManager
             this.Add = new System.Windows.Forms.Button();
             this.minus = new System.Windows.Forms.Button();
             this.Taskbar = new System.Windows.Forms.Panel();
+            this.delete = new System.Windows.Forms.Button();
             this.settingsPanel.SuspendLayout();
             this.Taskbar.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(7, 6);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(150, 20);
-            this.richTextBox1.TabIndex = 14;
-            this.richTextBox1.Text = "(Index starts at 0)";
-            // 
-            // reset
-            // 
-            this.reset.Location = new System.Drawing.Point(161, 4);
-            this.reset.Name = "reset";
-            this.reset.Size = new System.Drawing.Size(76, 23);
-            this.reset.TabIndex = 15;
-            this.reset.Text = "Reset";
-            this.reset.UseVisualStyleBackColor = true;
-            this.reset.Click += new System.EventHandler(this.reset_Click);
             // 
             // Save
             // 
@@ -212,8 +193,7 @@ namespace CustomGameManager
             // Taskbar
             // 
             this.Taskbar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Taskbar.Controls.Add(this.richTextBox1);
-            this.Taskbar.Controls.Add(this.reset);
+            this.Taskbar.Controls.Add(this.delete);
             this.Taskbar.Controls.Add(this.Settings);
             this.Taskbar.Controls.Add(this.minus);
             this.Taskbar.Controls.Add(this.Save);
@@ -222,6 +202,16 @@ namespace CustomGameManager
             this.Taskbar.Name = "Taskbar";
             this.Taskbar.Size = new System.Drawing.Size(932, 44);
             this.Taskbar.TabIndex = 22;
+            // 
+            // delete
+            // 
+            this.delete.Location = new System.Drawing.Point(12, 7);
+            this.delete.Name = "delete";
+            this.delete.Size = new System.Drawing.Size(136, 23);
+            this.delete.TabIndex = 22;
+            this.delete.Text = "Enable delete mode";
+            this.delete.UseVisualStyleBackColor = true;
+            this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
             // Form1
             // 
@@ -243,8 +233,6 @@ namespace CustomGameManager
         }
 
         #endregion
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button reset;
         private System.Windows.Forms.Button Save;
         private System.Windows.Forms.Button Settings;
         private System.Windows.Forms.Panel settingsPanel;
@@ -260,6 +248,7 @@ namespace CustomGameManager
         private System.Windows.Forms.Button Add;
         private System.Windows.Forms.Button minus;
         private System.Windows.Forms.Panel Taskbar;
+        private System.Windows.Forms.Button delete;
     }
 }
 

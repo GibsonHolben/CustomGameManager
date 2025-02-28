@@ -30,6 +30,8 @@ namespace CustomGameManager
                          ? Environment.GetEnvironmentVariable("HOME")
                          : Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%");
 
+        //Is the form in button deletion mode
+        bool deleteMode = false;
 
 
         /**initilizes the form*/
@@ -73,12 +75,14 @@ namespace CustomGameManager
                 settingsPanel.BackColor = Properties.Settings.Default.bgColor;
                 ColorButton.BackColor = Properties.Settings.Default.bgColor;
                 ButtonColor.BackColor = Properties.Settings.Default.buttonColor;
-                reset.BackColor = Properties.Settings.Default.buttonColor;
+                //reset.BackColor = Properties.Settings.Default.buttonColor;
                 Save.BackColor = Properties.Settings.Default.buttonColor;
                 Settings.BackColor = Properties.Settings.Default.buttonColor;
-                richTextBox1.BackColor = Properties.Settings.Default.buttonColor;
+                //richTextBox1.BackColor = Properties.Settings.Default.buttonColor;
                 Add.BackColor = Properties.Settings.Default.buttonColor;
                 minus.BackColor = Properties.Settings.Default.buttonColor;
+                delete.BackColor = Properties.Settings.Default.buttonColor;
+
                 foreach (Button b in PathButtons)
                 {
                     b.BackColor = Properties.Settings.Default.buttonColor;
@@ -106,7 +110,8 @@ namespace CustomGameManager
         }
 
 
-        /**Resets the given button*/
+        /**Resets the given button
+        
         private void reset_Click(object sender, EventArgs e){
             if(richTextBox1.Text == ""){
                 MessageBox.Show("Please Input The Game Slot You Would Like To Reset (index starts at 0)");
@@ -130,7 +135,7 @@ namespace CustomGameManager
                 }
                 iconSetup();
             }
-        }
+        }*/
 
         /**Loads the buttons from the settings file*/
         private void LoadButtons(){
@@ -151,25 +156,39 @@ namespace CustomGameManager
         }
 
         /**Opens the file manager if no path has been saved, else attempts to run the application*/
-        private void ButtonClickEvent(Button game){
-            if (game.Text == ""){
-                OpenFileDialog fd = new OpenFileDialog();
-                fd.ShowDialog();
-                game.Text = fd.FileName;
-                if (game.Text != "")
+        private void ButtonClickEvent(Button game, EventArgs e){
+
+            if (!deleteMode)
+            {
+                if (game.Text == "")
                 {
-                    Icon theIcon2 = ExtractIconFromFilePath(game.Text);
-                    game.Image = theIcon2.ToBitmap();
+                    OpenFileDialog fd = new OpenFileDialog();
+                    fd.ShowDialog();
+                    game.Text = fd.FileName;
+                    if (game.Text != "")
+                    {
+                        Icon theIcon2 = ExtractIconFromFilePath(game.Text);
+                        game.Image = theIcon2.ToBitmap();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        Process.Start(game.Text);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Path was not found/File could not be run");
+                    }
                 }
             }
-            else{
-                try{
-                    Process.Start(game.Text);
-                }
-                catch{
-                    MessageBox.Show("Path was not found/File could not be run");
-                }
+            else
+            {
+                clear(game);
             }
+
+           
         }
 
         /**Clears a buttons information*/
@@ -180,7 +199,7 @@ namespace CustomGameManager
 
         /**Runs when any button from the array has been clicked*/
         private void Global_Button_Click(object sender, EventArgs e){
-            ButtonClickEvent((Button)sender);
+            ButtonClickEvent((Button)sender, e);
         }
 
 
@@ -210,7 +229,10 @@ namespace CustomGameManager
         }
 
         /**Shows the setting menu*/
-        private void Settings_Click(object sender, EventArgs e){
+        private void Settings_Click(object sender, EventArgs e) {
+            if(deleteMode){
+                toggleDelete();
+            }
             settingsPanel.Show();
         }
         /**updates the settings and closed the setting menu*/
@@ -344,9 +366,37 @@ namespace CustomGameManager
             offset++;
         }
 
-        private void minus_Click(object sender, EventArgs e){
+        private void minus_Click(object sender, EventArgs e){ 
             Controls.Remove(PathButtons[PathButtons.Count - 1]);
             PathButtons.Remove(PathButtons[PathButtons.Count - 1]);
+        }
+
+        private void delete_Click(object sender, EventArgs e)
+        {
+            toggleDelete();
+        }
+
+        void toggleDelete()
+        {
+            if (deleteMode == true)
+            {
+                deleteMode = false;
+                delete.Text = "Enable delete mode";
+                foreach (Button b in PathButtons)
+                {
+                    b.BackColor = Properties.Settings.Default.buttonColor;
+                }
+            }
+            else
+            {
+                deleteMode = true;
+                delete.Text = "Disable delete mode";
+                foreach (Button b in PathButtons)
+                {
+                    b.BackColor = Color.Red;
+                }
+
+            }
         }
     }
 }
