@@ -287,7 +287,7 @@ namespace CustomGameManager
             ColorDialog bgColor = new ColorDialog();
             bgColor.ShowDialog();
             ColorButton.BackColor = bgColor.Color;
-            Properties.Settings.Default.bgColor= bgColor.Color;
+            background = bgColor.Color;
             this.BackColor = bgColor.Color;
         }
         /**Opens the color chooser for the buttons*/
