@@ -33,6 +33,10 @@ namespace CustomGameManager
         //Is the form in button deletion mode
         bool deleteMode = false;
 
+        Color background = Color.Black;
+        Color button = Color.White;
+        int  Style = 0;
+
 
         /**initilizes the form*/
         public Form1()
@@ -44,10 +48,16 @@ namespace CustomGameManager
         /**Sets up the variables and load settings*/
         private void Form1_Load(object sender, EventArgs e){
             path = homePath + "/Documents/GameManager.ini";
+
+            if (!File.Exists(path))
+            {
+                FileStream fs = File.Create(path);
+                fs.Close();
+            }
+               
             LoadButtons();
             try{
-                comboBox1.SelectedIndex = Properties.Settings.Default.ButtonStyle;
-                UpdateButtonStyle();
+                
                 foreach(Button b in PathButtons){
                     try{b.Click -= Global_Button_Click;}
                     catch{Console.WriteLine("no event to rem");}
@@ -64,28 +74,27 @@ namespace CustomGameManager
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             iconSetup();
-            ButtonSettingsLoad();
         }
 
         /**Loads the color and such settings for the buttons*/
-        private void ButtonSettingsLoad(){
+        private void ButtonSettingsLoad(Color background, Color button){
             try {
-                this.BackColor = Properties.Settings.Default.bgColor;
-                Taskbar.BackColor = Properties.Settings.Default.bgColor;
-                settingsPanel.BackColor = Properties.Settings.Default.bgColor;
-                ColorButton.BackColor = Properties.Settings.Default.bgColor;
-                ButtonColor.BackColor = Properties.Settings.Default.buttonColor;
+                this.BackColor = background;
+                Taskbar.BackColor = background;
+                settingsPanel.BackColor = background;
+                ColorButton.BackColor = background;
+                ButtonColor.BackColor = button;
                 //reset.BackColor = Properties.Settings.Default.buttonColor;
-                Save.BackColor = Properties.Settings.Default.buttonColor;
-                Settings.BackColor = Properties.Settings.Default.buttonColor;
+                Save.BackColor = button;
+                Settings.BackColor = button;
                 //richTextBox1.BackColor = Properties.Settings.Default.buttonColor;
-                Add.BackColor = Properties.Settings.Default.buttonColor;
-                minus.BackColor = Properties.Settings.Default.buttonColor;
-                delete.BackColor = Properties.Settings.Default.buttonColor;
+                Add.BackColor = button;
+                minus.BackColor = button;
+                delete.BackColor = button;
 
                 foreach (Button b in PathButtons)
                 {
-                    b.BackColor = Properties.Settings.Default.buttonColor;
+                    b.BackColor = button;
                 }
             }
             catch
@@ -139,20 +148,52 @@ namespace CustomGameManager
 
         /**Loads the buttons from the settings file*/
         private void LoadButtons(){
-            string settingsString = "";
-            using (StreamReader sr = File.OpenText(path)){
-                string s = "";
-                while ((s = sr.ReadLine()) != null){
-                    settingsString += s;
-                }
-            }
-            string[] settings = settingsString.Split('|');
-            string[] buttonsSettings = settings[1].Split(',');
-            for(int i = 0; i < Int32.Parse(settings[0]); i++)
+            try
             {
-                createButton();
-                PathButtons[i].Text = buttonsSettings[i];
+                string settingsString = "";
+                using (StreamReader sr = File.OpenText(path))
+                {
+                    string s = "";
+                    while ((s = sr.ReadLine()) != null)
+                    {
+                        settingsString += s;
+                    }
+                }
+                string[] settings = settingsString.Split('|');
+                string[] buttonsSettings = settings[1].Split(',');
+                for (int i = 0; i < Int32.Parse(settings[0]); i++)
+                {
+                    createButton();
+                    PathButtons[i].Text = buttonsSettings[i];
+                }
+                String[] colorSettingsPre = settings[2].Split(',');
+                Color[] colorSettings = new Color[colorSettingsPre.Length];
+
+                for (int i = 0; i < colorSettingsPre.Length; i++)
+                {
+                    colorSettings[i] = ColorTranslator.FromHtml(colorSettingsPre[i]);
+                }
+
+                comboBox1.SelectedIndex = Int32.Parse(settings[3]);
+                UpdateButtonStyle();
+                background = colorSettings[0];
+                button = colorSettings[1];
+                ButtonSettingsLoad(colorSettings[0], colorSettings[1]);
+            }catch
+            {
+              
+              
+                for (int i = 0; i < 12; i++)
+                {
+                    createButton();
+                }
+
+
+                comboBox1.SelectedIndex = Style;
+                UpdateButtonStyle();
+                ButtonSettingsLoad(background, button);
             }
+           
         }
 
         /**Opens the file manager if no path has been saved, else attempts to run the application*/
@@ -237,9 +278,9 @@ namespace CustomGameManager
         }
         /**updates the settings and closed the setting menu*/
         private void update_Click(object sender, EventArgs e){
-            ButtonSettingsLoad();
             settingsPanel.Hide();
             SaveFile();
+            ButtonSettingsLoad(background, button);
         }
         /**Opens the color chooser for the background*/
         private void ColorButton_Click(object sender, EventArgs e){
@@ -254,7 +295,7 @@ namespace CustomGameManager
             ColorDialog bgColor = new ColorDialog();
             bgColor.ShowDialog();
             ButtonColor.BackColor = bgColor.Color;
-            Properties.Settings.Default.buttonColor = bgColor.Color;
+            button = bgColor.Color;
             foreach(Button b in PathButtons){
                 b.BackColor = bgColor.Color;
             }
@@ -262,13 +303,16 @@ namespace CustomGameManager
         }
         /**Saves the settings to a file*/
         void SaveFile(){
-            Properties.Settings.Default.bgColor = this.BackColor;
-            Properties.Settings.Default.Save();
+            background = this.BackColor;
             String settingBuild = PathButtons.Count + "|";
 
             foreach (Button b in PathButtons){
                 settingBuild += b.Text + ",";
             }
+            string hexColorback = $"#{background.R:X2}{background.G:X2}{background.B:X2}";
+            string hexColorbutton = $"#{button.R:X2}{button.G:X2}{button.B:X2}";
+            settingBuild += "|" + hexColorback + "," + hexColorbutton + "|" + Style; 
+
 
             try{
                 if (File.Exists(path)){
@@ -285,7 +329,7 @@ namespace CustomGameManager
                 }
             }
             catch (Exception ex){
-                MessageBox.Show("An eror has happened. If this issue persists please open an issue on the github");
+                MessageBox.Show("An eror has happened. If this issue persists please open an issue on the github \n" + ex.ToString());
                 Console.WriteLine(ex.ToString());
             }
 
@@ -297,20 +341,20 @@ namespace CustomGameManager
 
         /**Updates the style of the button*/
         void UpdateButtonStyle(){
-            if (comboBox1.SelectedIndex == 0){
+            Style = comboBox1.SelectedIndex;
 
+            if (comboBox1.SelectedIndex == 0){
                 foreach (Button b in PathButtons)
                 { 
                     b.FlatStyle = FlatStyle.Standard;
                 }
             }
-            if (comboBox1.SelectedIndex == 1){
+            else if (comboBox1.SelectedIndex == 1){
                 foreach (Button b in PathButtons){
                     b.FlatStyle = FlatStyle.Flat;
                 }
 
-            }
-            Properties.Settings.Default.ButtonStyle = comboBox1.SelectedIndex; 
+            }   
         }
         /**Controlls the scrolling of the buttons (A bit buggy and needs work)*/
         private void vScrollBar1_Scroll(object sender, ScrollEventArgs e){
@@ -356,7 +400,7 @@ namespace CustomGameManager
             newButton.Click += Global_Button_Click;
             try
             {
-                newButton.BackColor = Properties.Settings.Default.buttonColor;
+                newButton.BackColor = button;
             }
             catch
             {
@@ -384,7 +428,7 @@ namespace CustomGameManager
                 delete.Text = "Enable delete mode";
                 foreach (Button b in PathButtons)
                 {
-                    b.BackColor = Properties.Settings.Default.buttonColor;
+                    b.BackColor = button;
                 }
             }
             else
