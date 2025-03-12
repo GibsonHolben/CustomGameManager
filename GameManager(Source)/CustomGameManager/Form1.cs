@@ -11,6 +11,8 @@ namespace CustomGameManager
     {
         /**Holds all the buttons for the tasks*/
         List<Button> PathButtons = new List<Button>();
+        List<String> PathButtonstrueText = new List<String>();
+
 
         /**The x offset of the buttons*/
         int offset = 0;
@@ -194,6 +196,8 @@ namespace CustomGameManager
                 ButtonSettingsLoad(background, button);
             }
            
+
+
         }
 
         /**Opens the file manager if no path has been saved, else attempts to run the application*/
@@ -232,6 +236,27 @@ namespace CustomGameManager
            
         }
 
+        private void ButtonMouseOverEvent(Button game, EventArgs e)
+        {
+            int colorFade = -30;
+            game.Location = new Point(game.Location.X, game.Location.Y - 5);
+            game.BackColor = Color.FromArgb(
+                Math.Min(game.BackColor.R + colorFade, 255), 
+                Math.Min(game.BackColor.G + colorFade, 255),
+                Math.Min(game.BackColor.B + colorFade, 255)
+            );
+        }
+        private void ButtonMouseExitEvent(Button game, EventArgs e)
+        {
+            int colorFade = -30;
+            game.Location = new Point(game.Location.X, game.Location.Y + 5);
+            game.BackColor = Color.FromArgb(
+                Math.Min(game.BackColor.R - colorFade, 255),
+                Math.Min(game.BackColor.G - colorFade, 255),
+                Math.Min(game.BackColor.B - colorFade, 255)
+            );
+        }
+
         /**Clears a buttons information*/
         private void clear(Button b){
             b.Text = ""; 
@@ -241,6 +266,15 @@ namespace CustomGameManager
         /**Runs when any button from the array has been clicked*/
         private void Global_Button_Click(object sender, EventArgs e){
             ButtonClickEvent((Button)sender, e);
+        }
+
+        private void Global_Mouse_Over(object sender, EventArgs e)
+        {
+            ButtonMouseOverEvent((Button)sender, e);
+        }
+        private void Global_Mouse_Exit(object sender, EventArgs e)
+        {
+            ButtonMouseExitEvent((Button)sender, e);
         }
 
 
@@ -398,6 +432,8 @@ namespace CustomGameManager
             newButton.Location = new Point((30 + (offset * 150)), 30 + (150 * (PathButtons.Count / 6)));
             newButton.Size = new Size(130, 130);
             newButton.Click += Global_Button_Click;
+            newButton.MouseEnter += Global_Mouse_Over;
+            newButton.MouseLeave += Global_Mouse_Exit;
             try
             {
                 newButton.BackColor = button;
