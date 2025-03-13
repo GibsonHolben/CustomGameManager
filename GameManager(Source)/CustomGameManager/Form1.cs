@@ -238,23 +238,31 @@ namespace CustomGameManager
 
         private void ButtonMouseOverEvent(Button game, EventArgs e)
         {
-            int colorFade = -30;
-            game.Location = new Point(game.Location.X, game.Location.Y - 5);
-            game.BackColor = Color.FromArgb(
-                Math.Min(game.BackColor.R + colorFade, 255), 
-                Math.Min(game.BackColor.G + colorFade, 255),
-                Math.Min(game.BackColor.B + colorFade, 255)
-            );
+            if (!deleteMode)
+            {
+                int colorFade = -30;
+                game.Location = new Point(game.Location.X, game.Location.Y - 5);
+                game.BackColor = Color.FromArgb(
+                    Math.Min(game.BackColor.R + colorFade, 255),
+                    Math.Min(game.BackColor.G + colorFade, 255),
+                    Math.Min(game.BackColor.B + colorFade, 255)
+                );
+            }
+         
         }
         private void ButtonMouseExitEvent(Button game, EventArgs e)
         {
-            int colorFade = -30;
-            game.Location = new Point(game.Location.X, game.Location.Y + 5);
-            game.BackColor = Color.FromArgb(
-                Math.Min(game.BackColor.R - colorFade, 255),
-                Math.Min(game.BackColor.G - colorFade, 255),
-                Math.Min(game.BackColor.B - colorFade, 255)
-            );
+            if (!deleteMode)
+            {
+                int colorFade = -30;
+                game.Location = new Point(game.Location.X, game.Location.Y + 5);
+                game.BackColor = Color.FromArgb(
+                    Math.Min(game.BackColor.R - colorFade, 255),
+                    Math.Min(game.BackColor.G - colorFade, 255),
+                    Math.Min(game.BackColor.B - colorFade, 255)
+                );
+            }
+               
         }
 
         /**Clears a buttons information*/
