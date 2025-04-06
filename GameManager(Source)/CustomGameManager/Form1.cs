@@ -12,6 +12,7 @@ namespace CustomGameManager
         /**Holds all the buttons for the tasks*/
         List<Button> PathButtons = new List<Button>();
         List<String> PathButtonstrueText = new List<String>();
+        
 
 
         /**The x offset of the buttons*/
@@ -240,35 +241,52 @@ namespace CustomGameManager
         {
             if (!deleteMode)
             {
-                int colorFade = -30;
                 game.Location = new Point(game.Location.X, game.Location.Y - 5);
-                game.BackColor = Color.FromArgb(
-                    Math.Min(game.BackColor.R + colorFade, 255),
-                    Math.Min(game.BackColor.G + colorFade, 255),
-                    Math.Min(game.BackColor.B + colorFade, 255)
-                );
+                try
+                {
+                    int colorFade = -30;
+                    game.BackColor = Color.FromArgb(
+                        Math.Min(game.BackColor.R + colorFade, 255),
+                        Math.Min(game.BackColor.G + colorFade, 255),
+                        Math.Min(game.BackColor.B + colorFade, 255)
+                    );
+                }
+                catch
+                {
+
+                }
             }
+            
          
         }
         private void ButtonMouseExitEvent(Button game, EventArgs e)
         {
             if (!deleteMode)
             {
-                int colorFade = -30;
                 game.Location = new Point(game.Location.X, game.Location.Y + 5);
-                game.BackColor = Color.FromArgb(
-                    Math.Min(game.BackColor.R - colorFade, 255),
-                    Math.Min(game.BackColor.G - colorFade, 255),
-                    Math.Min(game.BackColor.B - colorFade, 255)
-                );
+                try
+                {
+                    int colorFade = -30;
+                    game.BackColor = Color.FromArgb(
+                        Math.Min(game.BackColor.R - colorFade, 255),
+                        Math.Min(game.BackColor.G - colorFade, 255),
+                        Math.Min(game.BackColor.B - colorFade, 255)
+                    );
+                }
+                catch
+                {
+
+                }
             }
-               
         }
+
+
 
         /**Clears a buttons information*/
         private void clear(Button b){
             b.Text = ""; 
             b.Image = null;
+            
         }
 
         /**Runs when any button from the array has been clicked*/
@@ -293,9 +311,10 @@ namespace CustomGameManager
 
         /**Sets the icon for all the buttons*/
         void iconSetup(){
+            int i = 0; 
             foreach (Button b in PathButtons)
             {
-
+                i++;
                 if (b.Text != "")
                 {
                     try
